@@ -10,7 +10,6 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-
       - run: echo "This runs before the if"
       if: ${{ (github.event.pull_request.merged == true)}}
       - run: echo "This runs after the if"
