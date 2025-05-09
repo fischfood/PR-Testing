@@ -13,3 +13,11 @@ jobs:
       - run: echo "This runs before the if"
       - run: echo "This runs with the if"
         if: ${{ (github.event.pull_request.merged == true)}}
+      - run: echo "This runs on a label of major"
+        if: ${{ contains(github.event.pull_request.labels.*.name, 'major') }}
+      - run: echo "This runs on a label of minor"
+        if: ${{ contains(github.event.pull_request.labels.*.name, 'minor') }}
+      - run: echo "This runs on a label of major AND successful merge"
+        if: ${{ (github.event.pull_request.merged == true) && contains(github.event.pull_request.labels.*.name, 'major') }}
+      - run: echo "This runs on a label of minor AND successful merge"
+        if: ${{ (github.event.pull_request.merged == true) && contains(github.event.pull_request.labels.*.name, 'minor') }}
